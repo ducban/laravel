@@ -161,6 +161,9 @@ class Connection {
 		$sql = $this->transform($sql, $bindings);
 
 		$this->queries[] = compact('sql', 'bindings');
+		
+		ksort($bindings);
+      	$bindings = array_values($bindings);
 
 		return $this->execute($this->pdo->prepare($sql), $bindings);
 	}
